@@ -3,14 +3,14 @@ package Library;
 import java.util.Date;
 
 public class BookManager {
-    private int bookID;
+    private String bookID;
     private String bookTitle;
     private Date borrowDate;
     private Date returnDate;
     private int availableCopies;
     private boolean isAvailable;
 
-    public BookManager(int bookID, String bookTitle, Date borrowDate, Date returnDate, int availableCopies, boolean isAvailable){
+    public BookManager(String bookID, String bookTitle, Date borrowDate, Date returnDate, int availableCopies, boolean isAvailable){
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.borrowDate = borrowDate;
@@ -19,7 +19,7 @@ public class BookManager {
         this.isAvailable = true;
     }
 
-    public int getBookID(){
+    public String getBookID(){
         return bookID;
     }
 
@@ -43,7 +43,7 @@ public class BookManager {
         return isAvailable;
     }
 
-    public void setBookID(int bookID){
+    public void setBookID(String bookID){
         this.bookID = bookID;
     }
 

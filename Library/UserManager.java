@@ -3,17 +3,17 @@ package Library;
 import java.util.List;
 import java.util.ArrayList;
 public class UserManager {
-    private int userID;
+    private String userID;
     private String userName;
     private List<BookManager> borrowedBooks;
 
-    public UserManager(int userID, String userName, List<BookManager> borrowedBooks){
+    public UserManager(String userID, String userName, List<BookManager> borrowedBooks){
         this.userID = userID;
         this.userName = userName;
         this.borrowedBooks = new ArrayList<>();
     }
 
-    public int getUserID(){
+    public String getUserID(){
         return userID;
     }
 
@@ -25,7 +25,7 @@ public class UserManager {
         return borrowedBooks;
     }
 
-    public void setUserId(int userID){
+    public void setUserId(String userID){
         this.userID = userID;
     }
 
