@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 public class LibraryManager{
-    private List<BookManager> books;
-    private List<UserManager> users;
+    private List<BookManager> books = new ArrayList<>();
+    private List<UserManager> users = new ArrayList<>();
 
     public LibraryManager(){
         this.books = new ArrayList<>();
@@ -43,10 +43,6 @@ public class LibraryManager{
         .filter(book -> book.getBookTitle().toLowerCase().contains(bookTitle.toLowerCase())).collect(Collectors.toList());
     }
 
-    public List<BookManager> searchBookCatalog(){
-        return new ArrayList<>(books);
-    }
-
     public void addUser(UserManager user){
         if (!users.contains(user)){
             users.add(user);
@@ -55,7 +51,11 @@ public class LibraryManager{
         }
     }
 
-    List<BookManager> searchCatalog(){
+    public List<BookManager> searchCatalog(){
         return new ArrayList<>(books);
+    }
+
+    public List<UserManager> getUsers(){
+        return users;
     }
 }

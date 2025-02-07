@@ -3,19 +3,18 @@ package Library;
 import java.util.List;
 public class LibraryInterface {
     private static LibraryManager libraryManager = new LibraryManager();
-    private static List<BookManager> books;
-    private static List<UserManager> users;
 
     public static void main(String [] args){
         
-            System.out.println("Please enter desired menu option:");
+        if (args.length == 0) {
+            System.out.println("Please provide a command.");
             displayMenu();
-            
-
-            if(args[0].equals("help")){
-                displayMenu();
-                return;
-            }
+            return;
+        }
+        if (args[0].equals("help")) {
+            displayMenu();
+            return;
+        }
 
             String command = args[0];
 
@@ -70,6 +69,12 @@ public class LibraryInterface {
                         BookManager book = new BookManager(bookID, bookTitle, null, null, availableCopies, true);
                         libraryManager.addBook(book);
                         System.out.println("Book: " + bookTitle + ", added successfully!");
+
+                        System.out.println("Books in the library: ");
+                        libraryManager.searchCatalog().forEach(b -> System.out.println(b.getBookID() + " " + b.getBookTitle()));
+
+                        break;
+
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid input. Please retry!");
                     }
@@ -123,12 +128,15 @@ public class LibraryInterface {
     
                         if(user != null && book != null){
                             libraryManager.returnBook(user, book);
+                            System.out.println("Book Returned Successfully!");
+            
                         } else {
                             System.out.println("user/book not found. Please retry!");
                         }
                     } catch (NumberFormatException e){
                         System.out.println("Invalid input for user ID / book ID. format: U<id#> / B<id#> Please retry!");
                     }
+                    break;
                 }
             }
 
@@ -154,9 +162,18 @@ public class LibraryInterface {
                         UserManager user = new UserManager(userID, userName, null);
                         libraryManager.addUser(user);
                         System.out.println("User added successfully!");
+
+
+                        System.out.println("Users in the library: ");
+                        libraryManager.getUsers().forEach(u -> System.out.println(u.getUserID() + " " + u.getUserName()));
+
+
+
+                        break;
                     } catch(NumberFormatException e){
                         System.out.println("Invalid user ID entered. format: U<id#>");
                     }
+                    break;
                 }
             }
 
@@ -184,30 +201,46 @@ public class LibraryInterface {
                     } catch (NumberFormatException e){
                         System.out.println("Invalid user ID entered. format: U<id#>");
                     }
+                    break;
                 }
 
             }
 
-        public static List<BookManager> getBooks(){
-            return books;
-        }
 
-        private static BookManager findBook(String bookID){
-            return books.stream().filter(
-                book -> book.getBookID() == bookID
+        // private static BookManager findBook(String bookID){
+        //     return libraryManager.searchCatalog().stream().filter(
+        //         book -> book.getBookID().equals(bookID)
+        //     ).findFirst().orElse(null);
+        // }
+
+        private static BookManager findBook(String bookID) {
+            System.out.println("Looking for book with ID: " + bookID); // Debugging statement
+            BookManager book = libraryManager.searchCatalog().stream().filter(
+                b -> b.getBookID().trim().toLowerCase().equals(bookID.trim().toLowerCase())
             ).findFirst().orElse(null);
+            if (book == null) {
+                System.out.println("Book not found!");
+            }
+            return book;
         }
 
-        public static List<UserManager> getUsers(){
-                    return users;
-                }
+        // private static UserManager findUser(String userID){
+        //     return libraryManager.getUsers().stream().filter(
+        //         user -> user.getUserID().equals(userID)
+        //     ).findFirst().orElse(null);
+        // }
 
-                private static UserManager findUser(String userID){
-                    return getUsers().stream().filter(
-                user -> user.getUserID() == userID
+
+        private static UserManager findUser(String userID) {
+            System.out.println("Looking for user with ID: " + userID); // Debugging statement
+            UserManager user = libraryManager.getUsers().stream().filter(
+                u -> u.getUserID().trim().toLowerCase().equals(userID.trim().toLowerCase())
             ).findFirst().orElse(null);
+            if (user == null) {
+                System.out.println("User not found!");
+            }
+            return user;
         }
-
         
 
 }
