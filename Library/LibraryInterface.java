@@ -30,7 +30,7 @@ public class LibraryInterface {
                     returnBook(args);
                     break;
                 case "searchCatalog":
-                    searchCatalog(args);
+                    showCatalog();
                     break;
                 case "addUser":
                     addUser(args);
@@ -99,7 +99,7 @@ public class LibraryInterface {
                             System.out.println("user/book not found. Please retry!");
                         }
                     } catch (NumberFormatException e){
-                        System.out.println("Invalid input for user ID / book ID. Please retry!");
+                        System.out.println("Invalid input for user ID / book ID. format: U<id#> / B<id#> Please retry!");
                     }
 
                     break;
@@ -127,23 +127,66 @@ public class LibraryInterface {
                             System.out.println("user/book not found. Please retry!");
                         }
                     } catch (NumberFormatException e){
-                        System.out.println("Invalid input for user ID / book ID. Please retry!");
+                        System.out.println("Invalid input for user ID / book ID. format: U<id#> / B<id#> Please retry!");
                     }
                 }
             }
 
-            private static void searchCatalog(String[] args){
+            public static void showCatalog(){
+                List<BookManager> books = libraryManager.searchCatalog();
 
+                if(books.isEmpty()){
+                    System.out.println("no books to show!");
+                } else{
+                    books.forEach(
+                        book -> System.out.println(book.getBookTitle())
+                    );
+                }
             }
+
 
             private static void addUser(String[] args){
-
+                while(true){
+                    try{
+                        String userID = args[1];
+                        String userName = args[2];
+        
+                        UserManager user = new UserManager(userID, userName, null);
+                        libraryManager.addUser(user);
+                        System.out.println("User added successfully!");
+                    } catch(NumberFormatException e){
+                        System.out.println("Invalid user ID entered. format: U<id#>");
+                    }
+                }
             }
 
+
             private static void booksBorrowedByUser(String[] args){
+                while(true){
+                    if(args.length != 2){
+                        System.out.println("Usage: booksBorrowedByUser <userID>");
+                        return;
+                    }
 
+                    try{
+                        String userID = args[1];
 
-        }
+                        UserManager user = findUser(userID);
+
+                        if( user != null){
+                            System.out.println("books borrowed by user" + userID + ": ");
+                            user.getBorrowedBooks().forEach(
+                                book -> System.out.println(book.getBookTitle())
+                            );
+                        } else {
+                            System.out.println("user not found.");
+                        }
+                    } catch (NumberFormatException e){
+                        System.out.println("Invalid user ID entered. format: U<id#>");
+                    }
+                }
+
+            }
 
         public static List<BookManager> getBooks(){
             return books;

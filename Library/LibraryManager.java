@@ -54,4 +54,8 @@ public class LibraryManager{
             System.out.println("A user with these credentials already exists!");
         }
     }
+
+    List<BookManager> searchCatalog(){
+        return new ArrayList<>(books);
+    }
 }
