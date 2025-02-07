@@ -10,7 +10,18 @@ public class BookManager {
     private int availableCopies;
     private boolean isAvailable;
 
-    public BookManager(String bookID, String bookTitle, Date borrowDate, Date returnDate, int availableCopies, boolean isAvailable){
+    /**
+     * constuctor for BookManager
+     * 
+     * @param bookID
+     * @param bookTitle
+     * @param borrowDate
+     * @param returnDate
+     * @param availableCopies
+     * @param isAvailable
+     */
+    public BookManager(String bookID, String bookTitle, Date borrowDate, Date returnDate, int availableCopies,
+            boolean isAvailable) {
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.borrowDate = borrowDate;
@@ -19,53 +30,111 @@ public class BookManager {
         this.isAvailable = true;
     }
 
-    public String getBookID(){
+    /**
+     * get bookID
+     * 
+     * @return bookID
+     */
+    public String getBookID() {
         return bookID;
     }
 
-    public String getBookTitle(){
+    /**
+     * get book title
+     * 
+     * @return bookTitle
+     */
+    public String getBookTitle() {
         return bookTitle;
     }
 
-    public Date getBorrowDate(){
+    /**
+     * get borrow date
+     * 
+     * @return borrowDate
+     */
+    public Date getBorrowDate() {
         return borrowDate;
     }
 
-    public Date getReturnDate(){
+    /**
+     * get return date
+     * 
+     * @return return date
+     */
+    public Date getReturnDate() {
         return returnDate;
     }
 
-    public int getAvailableCopies(){
+    /**
+     * get available copies
+     * 
+     * @return availableCopies
+     */
+    public int getAvailableCopies() {
         return availableCopies;
     }
 
-    public boolean getIsAvailable(){
+    /**
+     * get is available (availability status)
+     * 
+     * @return isAvailable
+     */
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setBookID(String bookID){
+    /**
+     * set book ID
+     * 
+     * @param bookID
+     */
+    public void setBookID(String bookID) {
         this.bookID = bookID;
     }
 
-    public void setBookTitle(String bookTitle){
+    /**
+     * set book title
+     * 
+     * @param bookTitle
+     */
+    public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
     }
 
-    public void setBorrowDate(Date borrowDate){
+    /**
+     * set borrow date
+     * 
+     * @param borrowDate
+     */
+    public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
     }
 
-    public void setReturnDate(Date returnDate){
+    /**
+     * set return date
+     * 
+     * @param returnDate
+     */
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 
-    public void setAvailableCopies(int availableCopies){
+    /**
+     * set available copies
+     * 
+     * @param availableCopies
+     */
+    public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
     }
 
-    public void setIsAvailable(boolean isAvailable){
+    /**
+     * set is available (availability status)
+     * 
+     * @param isAvailable
+     */
+    public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
 }
-
-
