@@ -39,8 +39,9 @@ public class LibraryManager{
     }
 
     public List<BookManager> searchBookTitle(String bookTitle){
-        return books.stream()
-        .filter(book -> book.getBookTitle().toLowerCase().contains(bookTitle.toLowerCase())).collect(Collectors.toList());
+        return books.stream().filter(
+            book -> book.getBookTitle().toLowerCase().contains(bookTitle.toLowerCase())).collect(Collectors.toList()
+            );
     }
 
     public void addUser(UserManager user){
