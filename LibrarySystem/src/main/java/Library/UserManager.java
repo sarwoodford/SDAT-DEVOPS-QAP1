@@ -1,4 +1,4 @@
-package LibrarySystem.src.Library;
+package LibrarySystem.src.main.java.Library;
 
 import java.util.List;
 import java.util.ArrayList;
