@@ -1,4 +1,4 @@
-package Library;
+package LibrarySystem.src.Library;
 
 import java.util.List;
 import java.util.Scanner;
